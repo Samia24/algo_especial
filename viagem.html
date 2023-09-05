@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sâmia</title>
+    <style>
+        body{
+            background-color:rgb(19, 40, 43);
+        }
+
+        img{
+            width: 220px;
+        }
+
+        h1{
+            color:rgb(255, 178, 228);
+            margin: 10px;
+            font-size: 1.5rem;
+            font-family: cursive;
+            width: 40%;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid rgb(153, 255, 58);
+        }
+
+        #botoes{
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        #botoes input{
+            min-width: 200px;
+            flex: 1;
+            height: 35px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            background-color:rgb(235, 162, 210);
+        }
+
+        input{
+            background-color: rgb(19, 40, 43);
+            color: rgb(19, 40, 43);
+            border-bottom: 2px solid rgb(255, 178, 228);
+            border-right: 2px solid rgb(255, 178, 228);
+            border-top: rgb(19, 40, 43);
+            font-size: 0.9rem;
+        }
+
+        header{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: -20px;
+            margin-top: -50px;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.6rem;
+        }
+
+
+        label{
+            color:rgb(153, 255, 58);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="imagens/combustivel.png" alt="Carro em abastecimento">
+        <h1>Cálculo de Gasto com Combustível na Viagem</h1>
+    </header>
+    <form>
+        <div>
+            <label for="">Destino: </label>
+            <input type="text" placeholder="Vai viajar para onde?">
+        </div>
+
+        <div>
+            <label for="">Distância: </label>
+            <input id="cx-distancia"  type="number" placeholder="Km: Ida e Volta">
+        </div>
+
+        <div>
+            <label for="">Motor Elétrico (%)</label>
+            <input id="cx-eletrico"  type="number" placeholder="Uso de motor elétrico (%)">
+        </div>
+
+        <div>
+            <label for="">Preço Gasolina (R$/L)</label>
+            <input id="cx-preco-gas"  type="number" step="0.01" placeholder="Preço L Gasolina (R$)">
+        </div>
+
+        <div>
+            <label for="">Preço Álcool (R$/L)</label>
+            <input id="cx-preco-alc"  type="number" step="0.01" placeholder="Preço L Álcool (R$)">
+        </div>
+
+        <div>
+            <label for="">Rendimento Gasolina (Km/L)</label>
+            <input id="cx-rend-gas"  type="number" step="0.1" placeholder="Rendimento 1L Gasolina">
+        </div>
+
+        <div>
+            <label for="">Rendimento Álcool (Km/L)</label>
+            <input id="cx-rend-alc"  type="number" step="0.1" placeholder="Rendimento 1L Álcool">
+        </div>
+
+        <div id="botoes">
+            <input type="reset" placeholder="Limpar">
+            <input id="btn-calcular" onclick="clique_botao_calcular()" type="submit" placeholder="Calcular Gastos">
+        </div>
+    </form>
+    <script>
+        function clique_botao_calcular(){
+            const cx_distancia = document.getElementById('cx-distancia')
+            const cx_eletrico = document.getElementById('cx-eletrico')
+            const cx_preco_gas = document.getElementById('cx-preco-gas')
+            const cx_preco_alc = document.getElementById('cx-preco-alc')
+            const cx_rend_gas = document.getElementById('cx-rend-gas')
+            const cx_rend_alc = document.getElementById('cx-rend-alc')
+            
+            const distancia = Number(cx_distancia.value)
+            const perc_eletrico = Number(cx_eletrico.value)
+            const preco_gas = Number(cx_preco_gas.value)
+            const preco_alc = Number(cx_preco_alc.value)
+            const rend_gas = Number(cx_rend_gas.value)
+            const rend_alc = Number(cx_rend_alc.value)
+            
+            //Gastos
+            const distancia_eletrico = (distancia * perc_eletrico) / 100
+            const distancia_combustivel = distancia - distancia_eletrico
+
+            //Litros
+            const litros_gas = distancia_combustivel / rend_gas
+            const litros_alc = distancia_combustivel / rend_alc
+
+            //R$
+            const gasto_gas = litros_gas * preco_gas
+            const gasto_alc = litros_alc * preco_alc
+            
+            //Resultado
+            
+            alert('Dados computados!')
+        }
+    </script>
+</body>
+</html>
