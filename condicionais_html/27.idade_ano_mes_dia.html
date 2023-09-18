@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Idade</title>
+</head>
+<body>
+    <h1>Calculadora de Idade</h1>
+    <form id="formulario" onsubmit="calcularIdade(); return false;">
+        <div>
+            <label for="diaAtual">Informe o dia atual (DD):</label>
+            <input id="diaAtual" type="number" min="1" max="31" required>
+        </div>
+        <div>
+            <label for="mesAtual">Informe o mês atual (MM):</label>
+            <input id="mesAtual" type="number" min="1" max="12" required>
+        </div>
+        <div>
+            <label for="anoAtual">Informe o ano atual (AAAA):</label>
+            <input id="anoAtual" type="number" min="1900" max="2099" required>
+        </div>
+        <div>
+            <label for="diaNascimento">Informe o dia do seu nascimento (DD):</label>
+            <input id="diaNascimento" type="number" min="1" max="31" required>
+        </div>
+        <div>
+            <label for="mesNascimento">Informe o mês do seu nascimento (MM):</label>
+            <input id="mesNascimento" type="number" min="1" max="12" required>
+        </div>
+        <div>
+            <label for="anoNascimento">Informe o ano do seu nascimento (AAAA):</label>
+            <input id="anoNascimento" type="number" min="1900" max="2099" required>
+        </div>
+        <div>
+            <button type="submit">Calcular Idade</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularIdade() {
+            const diaAtual = parseInt(document.getElementById('diaAtual').value);
+            const mesAtual = parseInt(document.getElementById('mesAtual').value);
+            const anoAtual = parseInt(document.getElementById('anoAtual').value);
+            const diaNascimento = parseInt(document.getElementById('diaNascimento').value);
+            const mesNascimento = parseInt(document.getElementById('mesNascimento').value);
+            const anoNascimento = parseInt(document.getElementById('anoNascimento').value);
+
+            const [anos, meses, dias] = idadeAtual(diaAtual, mesAtual, anoAtual, diaNascimento, mesNascimento, anoNascimento);
+
+            document.getElementById('resultado').textContent = `Sua idade é de ${anos} anos, ${meses} meses e ${dias} dias.`;
+        }
+
+        function idadeAtual(diaAtual, mesAtual, anoAtual, diaNascimento, mesNascimento, anoNascimento) {
+            let anos = anoAtual - anoNascimento;
+            let meses = mesAtual - mesNascimento;
+            let dias = diaAtual - diaNascimento;
+
+            if (dias < 0) {
+                meses -= 1;
+                dias += diasNoMes(mesAtual, anoAtual);
+            }
+
+            if (meses < 0) {
+                anos -= 1;
+                meses += 12;
+            }
+
+            return [anos, meses, dias];
+        }
+
+        function diasNoMes(mes, ano) {
+            const meses31Dias = [1, 3, 5, 7, 8, 10, 12];
+            const meses30Dias = [4, 6, 9, 11];
+
+            if (mes === 2) {
+                if ((ano % 4 === 0 && ano % 100 !== 0) || ano % 400 === 0) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            } else if (meses31Dias.includes(mes)) {
+                return 31;
+            } else if (meses30Dias.includes(mes)) {
+                return 30;
+            }
+        }
+    </script>
+</body>
+</html>

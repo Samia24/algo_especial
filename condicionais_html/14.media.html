@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média e Números Maiores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Média e Números Maiores</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="numero1">Informe o primeiro número:</label>
+            <input id="numero1" type="number" placeholder="Número 1">
+        </div>
+
+        <div>
+            <label for="numero2">Informe o segundo número:</label>
+            <input id="numero2" type="number" placeholder="Número 2">
+        </div>
+
+        <div>
+            <label for="numero3">Informe o terceiro número:</label>
+            <input id="numero3" type="number" placeholder="Número 3">
+        </div>
+
+        <div>
+            <label for="numero4">Informe o quarto número:</label>
+            <input id="numero4" type="number" placeholder="Número 4">
+        </div>
+
+        <div>
+            <label for="numero5">Informe o quinto número:</label>
+            <input id="numero5" type="number" placeholder="Número 5">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-calcular" onclick="calcular()" type="button" value="Calcular">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function obter_numero_int(descricao) {
+            const numero = Number(prompt(descricao))
+            return numero
+        }
+
+        function calcular() {
+            const numero1 = obter_numero_int('Informe o primeiro número: ')
+            const numero2 = obter_numero_int('Informe o segundo número: ')
+            const numero3 = obter_numero_int('Informe o terceiro número: ')
+            const numero4 = obter_numero_int('Informe o quarto número: ')
+            const numero5 = obter_numero_int('Informe o quinto número: ')
+
+            const qtd_num = 5
+            const media_num = (numero1 + numero2 + numero3 + numero4 + numero5) / qtd_num
+
+            let resultado = `\nA média dos números é: ${media_num}.\nOs números maiores que a média são: `
+            if (numero1 > media_num) {
+                resultado += numero1 + ' '
+            }
+            if (numero2 > media_num) {
+                resultado += numero2 + ' '
+            }
+            if (numero3 > media_num) {
+                resultado += numero3 + ' '
+            }
+            if (numero4 > media_num) {
+                resultado += numero4 + ' '
+            }
+            if (numero5 > media_num) {
+                resultado += numero5 + ' '
+            }
+
+            document.getElementById('resultado').textContent = resultado + '<<'
+        }
+    </script>
+</body>
+</html>

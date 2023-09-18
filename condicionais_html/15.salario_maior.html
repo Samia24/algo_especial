@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salário dos Professores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Salário dos Professores</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="horas1">Informe a quantidade de horas/aula do primeiro professor:</label>
+            <input id="horas1" type="number" placeholder="Horas do Professor 1">
+        </div>
+
+        <div>
+            <label for="valor1">Informe o valor da hora/aula do primeiro professor:</label>
+            <input id="valor1" type="number" placeholder="Valor do Professor 1">
+        </div>
+
+        <div>
+            <label for="horas2">Informe a quantidade de horas/aula do segundo professor:</label>
+            <input id="horas2" type="number" placeholder="Horas do Professor 2">
+        </div>
+
+        <div>
+            <label for="valor2">Informe o valor da hora/aula do segundo professor:</label>
+            <input id="valor2" type="number" placeholder="Valor do Professor 2">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-calcular" onclick="calcular()" type="button" value="Calcular">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function obter_numero_int(descricao) {
+            const numero = Number(prompt(descricao))
+            return numero
+        }
+
+        function calcular() {
+            const horas1 = obter_numero_int('Informe a quantidade de horas/aula do primeiro professor: ')
+            const valor1 = obter_numero_int('Informe o valor da hora/aula do primeiro professor: ')
+            const horas2 = obter_numero_int('Informe a quantidade de horas/aula do segundo professor: ')
+            const valor2 = obter_numero_int('Informe o valor da hora/aula do segundo professor: ')
+
+            const salario1 = horas1 * valor1
+            const salario2 = horas2 * valor2
+
+            let resultado = ''
+            if (salario1 > salario2) {
+                resultado = `>> O professor 1 tem salário maior, de R$ ${salario1.toFixed(2)}.`
+            } else if (salario2 > salario1) {
+                resultado = `>> O professor 2 tem salário maior, de R$ ${salario2.toFixed(2)}.`
+            } else {
+                resultado = '>> Os professores têm salários iguais.'
+            }
+
+            document.getElementById('resultado').textContent = resultado
+        }
+    </script>
+</body>
+</html>

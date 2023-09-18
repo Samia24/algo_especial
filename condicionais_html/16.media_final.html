@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas do Aluno</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Notas do Aluno</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="nota1">Digite a primeira nota:</label>
+            <input id="nota1" type="number" step="0.01" placeholder="Primeira Nota">
+        </div>
+
+        <div>
+            <label for="nota2">Digite a segunda nota:</label>
+            <input id="nota2" type="number" step="0.01" placeholder="Segunda Nota">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-calcular" onclick="calcularMedia()" type="button" value="Calcular Média">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function obter_numero_float(descricao) {
+            const numero = parseFloat(prompt(descricao))
+            return numero
+        }
+
+        function calcularMedia() {
+            const nota1 = obter_numero_float('Digite a primeira nota: ')
+            const nota2 = obter_numero_float('Digite a segunda nota: ')
+
+            const media = (nota1 + nota2) / 2
+
+            let resultado = ''
+
+            if (media < 7) {
+                const notaEF = obter_numero_float('Informe sua nota no exame final: ')
+                const media_final = (media + notaEF) / 2
+
+                if (media_final >= 5) {
+                    resultado = 'Aprovado no EF'
+                } else {
+                    resultado = 'Reprovado no EF'
+                }
+            } else {
+                resultado = 'Aprovado direto'
+            }
+
+            document.getElementById('resultado').textContent = `>>> O aluno foi ${resultado}.`
+        }
+    </script>
+</body>
+</html>

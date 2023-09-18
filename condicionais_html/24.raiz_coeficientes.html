@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Raízes</title>
+</head>
+<body>
+    <h1>Calcular Raízes</h1>
+    <form id="formulario" onsubmit="calcularRaizes(); return false;">
+        <div>
+            <label for="coeficienteA">Informe o valor do coeficiente A:</label>
+            <input id="coeficienteA" type="number" required>
+        </div>
+
+        <div>
+            <label for="coeficienteB">Informe o valor do coeficiente B:</label>
+            <input id="coeficienteB" type="number" required>
+        </div>
+
+        <div>
+            <label for="coeficienteC">Informe o valor do coeficiente C:</label>
+            <input id="coeficienteC" type="number" required>
+        </div>
+
+        <div>
+            <button type="submit">Calcular Raízes</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularRaizes() {
+            const coeficienteA = parseFloat(document.getElementById('coeficienteA').value);
+            const coeficienteB = parseFloat(document.getElementById('coeficienteB').value);
+            const coeficienteC = parseFloat(document.getElementById('coeficienteC').value);
+
+            if (coeficienteA === 0) {
+                alert('O coeficiente A deve ser diferente de zero.');
+                return;
+            }
+
+            const [raizA, raizB, raizC] = calcular_raiz(coeficienteA, coeficienteB, coeficienteC);
+
+            const resultado = `A raiz de A é: ${raizA.toFixed(1)};\nA raiz de B é: ${raizB.toFixed(1)};\nA raiz de C é: ${raizC.toFixed(1)}.`;
+            document.getElementById('resultado').textContent = resultado;
+        }
+
+        function calcular_raiz(coefA, coefB, coefC) {
+            const raizA = Math.sqrt(coefA);
+            const raizB = Math.sqrt(coefB);
+            const raizC = Math.sqrt(coefC);
+            return [raizA, raizB, raizC];
+        }
+    </script>
+</body>
+</html>

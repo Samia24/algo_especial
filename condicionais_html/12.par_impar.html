@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Par ou Ímpar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Par ou Ímpar</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="numero">Informe um número inteiro:</label>
+            <input id="numero" type="number" placeholder="Número">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-verificar" onclick="par_impar()" type="button" value="Verificar">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function obter_numero_int(descricao) {
+            const numero = Number(prompt(descricao))
+            return numero
+        }
+
+        function par_impar() {
+            const numero = obter_numero_int('Informe um número inteiro: ')
+            if (numero % 2 === 0) {
+                document.getElementById('resultado').textContent = `O número ${numero} é PAR.`
+            } else {
+                document.getElementById('resultado').textContent = `O número ${numero} é ÍMPAR.`
+            }
+        }
+    </script>
+</body>
+</html>

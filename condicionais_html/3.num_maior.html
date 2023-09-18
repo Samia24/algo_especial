@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontrar o Maior Número</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Encontrar o Maior Número</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="numero1">Informe o primeiro número:</label>
+            <input id="numero1" type="number" placeholder="Primeiro número">
+        </div>
+        
+        <div>
+            <label for="numero2">Informe o segundo número:</label>
+            <input id="numero2" type="number" placeholder="Segundo número">
+        </div>
+
+        <div>
+            <label for="numero3">Informe o terceiro número:</label>
+            <input id="numero3" type="number" placeholder="Terceiro número">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-calcular" onclick="encontrarMaior()" type="button" value="Calcular">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function encontrarMaior() {
+            // Obter valores dos números
+            const numero1 = obter_numero('numero1');
+            const numero2 = obter_numero('numero2');
+            const numero3 = obter_numero('numero3');
+
+            // Encontrar o maior número
+            const num_maior = maior(numero1, numero2, numero3);
+
+            // Exibir o resultado
+            const resultado = `O maior número é ${num_maior}.`;
+            const elementoResultado = document.getElementById('resultado');
+            elementoResultado.textContent = resultado;
+        }
+
+        function obter_numero(elemento_id) {
+            const elemento = document.getElementById(elemento_id);
+            return Number(elemento.value);
+        }
+
+        function maior(num1, num2, num3) {
+            let maior = 0;
+
+            if (num1 > num2 && num1 > num3) {
+                maior = num1;
+            } else if (num2 > num1 && num2 > num3) {
+                maior = num2;
+            } else {
+                maior = num3;
+            }
+
+            return maior;
+        }
+    </script>
+</body>
+</html>

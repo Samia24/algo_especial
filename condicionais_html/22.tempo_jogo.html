@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duração do Jogo</title>
+</head>
+<body>
+    <h1>Duração do Jogo</h1>
+    <form id="formulario" onsubmit="calcularDuracao(); return false;">
+        <div>
+            <label for="horaInicial">Informe a hora inicial do jogo (HH):</label>
+            <input id="horaInicial" type="number" min="0" max="23" required>
+        </div>
+
+        <div>
+            <label for="minutosInicial">Informe os minutos de início do jogo (min):</label>
+            <input id="minutosInicial" type="number" min="0" max="59" required>
+        </div>
+
+        <div>
+            <label for="horaFinal">Informe a hora final do jogo (HH):</label>
+            <input id="horaFinal" type="number" min="0" max="23" required>
+        </div>
+
+        <div>
+            <label for="minutosFinal">Informe os minutos de fim de jogo (min):</label>
+            <input id="minutosFinal" type="number" min="0" max="59" required>
+        </div>
+
+        <div>
+            <button type="submit">Calcular Duração do Jogo</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularDuracao() {
+            const horaInicial = parseInt(document.getElementById('horaInicial').value);
+            const minutosInicial = parseInt(document.getElementById('minutosInicial').value);
+            const horaFinal = parseInt(document.getElementById('horaFinal').value);
+            const minutosFinal = parseInt(document.getElementById('minutosFinal').value);
+
+            const [duracaoHoras, duracaoMinutos] = calcular_duracao_jogo(horaInicial, minutosInicial, horaFinal, minutosFinal);
+
+            const resultado = `Duração do jogo: ${duracaoHoras} horas e ${duracaoMinutos} minutos.`;
+            document.getElementById('resultado').textContent = resultado;
+        }
+
+        function calcular_duracao_jogo(horaInicial, minutosInicial, horaFinal, minutosFinal) {
+            let duracaoHoras = horaFinal - horaInicial;
+            let duracaoMinutos = minutosFinal - minutosInicial;
+
+            if (duracaoHoras < 0) {
+                duracaoHoras += 24;
+            }
+
+            return [duracaoHoras, duracaoMinutos];
+        }
+    </script>
+</body>
+</html>

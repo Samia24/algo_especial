@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+</head>
+<body>
+    <header>
+        <h1>Calculadora Simples</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="valor1">Digite o valor 1:</label>
+            <input id="valor1" type="number" placeholder="Valor 1">
+        </div>
+
+        <div>
+            <label for="valor2">Digite o valor 2:</label>
+            <input id="valor2" type="number" placeholder="Valor 2">
+        </div>
+
+        <div>
+            <label for="opcoes">Escolha uma opção:</label>
+            <select id="opcoes">
+                <option value="1">Adição</option>
+                <option value="2">Subtração</option>
+                <option value="3">Multiplicação</option>
+                <option value="4">Divisão</option>
+            </select>
+        </div>
+
+        <div id="botoes">
+            <input id="btn-calcular" onclick="calcularResultado()" type="button" value="Calcular Resultado">
+            <input type="reset" value="Limpar">
+        </div>
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function obter_numero_int(descricao) {
+            const numero = parseInt(prompt(descricao))
+            return numero
+        }
+
+        function calcularResultado() {
+            const valor1 = obter_numero_int('Digite o valor 1: ')
+            const valor2 = obter_numero_int('Digite o valor 2: ')
+            const opcoes = obter_numero_int('Escolha uma opção (1 - Adição; 2 - Subtração; 3 - Multiplicação; 4 - Divisão): ')
+
+            let resultado = ''
+
+            if (opcoes === 1) {
+                const adicao = valor1 + valor2
+                resultado = `Você escolheu a opção adição.\nO resultado de ${valor1} + ${valor2} é ${adicao}.`
+            } else if (opcoes === 2) {
+                const subtracao = valor1 - valor2
+                resultado = `Você escolheu a opção subtração.\nO resultado de ${valor1} - ${valor2} é ${subtracao}.`
+            } else if (opcoes === 3) {
+                const multiplicacao = valor1 * valor2
+                resultado = `Você escolheu a opção multiplicação.\nO resultado de ${valor1} x ${valor2} é ${multiplicacao}.`
+            } else if (opcoes === 4) {
+                const divisao = valor1 / valor2
+                resultado = `Você escolheu a opção divisão.\nO resultado de ${valor1} / ${valor2} é ${divisao.toFixed(1)}.`
+            } else {
+                resultado = 'Opção inválida!'
+            }
+
+            document.getElementById('resultado').textContent = resultado
+        }
+    </script>
+</body>
+</html>

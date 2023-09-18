@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação de Quadrante</title>
+</head>
+<body>
+    <h1>Classificação de Quadrante</h1>
+    <form id="formulario" onsubmit="calcularQuadrante(); return false;">
+        <div>
+            <label for="angulo">Informe um ângulo entre 0º e 360º:</label>
+            <input id="angulo" type="number" step="1" min="0" max="360" required>
+        </div>
+
+        <div>
+            <button type="submit">Calcular Quadrante</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularQuadrante() {
+            const angulo = parseFloat(document.getElementById('angulo').value);
+            const classificacao = classif_quadrante(angulo);
+            const resultado = `O ângulo de ${angulo.toFixed(0)}º está localizado no ${classificacao} quadrante.`;
+            document.getElementById('resultado').textContent = resultado;
+        }
+
+        function classif_quadrante(angulo) {
+            if (angulo <= 90) {
+                return 'PRIMEIRO';
+            } else if (angulo <= 180) {
+                return 'SEGUNDO';
+            } else if (angulo <= 270) {
+                return 'TERCEIRO';
+            } else if (angulo <= 360) {
+                return 'QUARTO';
+            } else {
+                return 'Ângulo fora do intervalo válido.';
+            }
+        }
+    </script>
+</body>
+</html>

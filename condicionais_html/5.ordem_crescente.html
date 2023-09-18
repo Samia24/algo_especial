@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordem Crescente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ordem Crescente</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="numero1">Informe o primeiro número:</label>
+            <input id="numero1" type="number" placeholder="Primeiro número">
+        </div>
+
+        <div>
+            <label for="numero2">Informe o segundo número:</label>
+            <input id="numero2" type="number" placeholder="Segundo número">
+        </div>
+
+        <div>
+            <label for="numero3">Informe o terceiro número:</label>
+            <input id="numero3" type="number" placeholder="Terceiro número">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-ordenar" onclick="ordenarNumeros()" type="button" value="Ordenar">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function ordenarNumeros() {
+            // Obter os números digitados
+            const numero1 = obter_numero('numero1');
+            const numero2 = obter_numero('numero2');
+            const numero3 = obter_numero('numero3');
+
+            // Ordenar os números em ordem crescente
+            const [num_menor, num_interm, num_maior] = ordem_crescente(numero1, numero2, numero3);
+
+            // Exibir o resultado
+            const elementoResultado = document.getElementById('resultado');
+            elementoResultado.textContent = `A ordem crescente é ${num_menor}, ${num_interm} e ${num_maior}.`;
+        }
+
+        function obter_numero(elemento_id) {
+            const elemento = document.getElementById(elemento_id);
+            return Number(elemento.value);
+        }
+
+        function ordem_crescente(num1, num2, num3) {
+            let menor, intermediario, maior;
+
+            if (num1 > num2 && num1 > num3 && num2 > num3) {
+                maior = num1;
+                intermediario = num2;
+                menor = num3;
+            } else if (num1 < num2 && num1 < num3 && num2 < num3) {
+                maior = num3;
+                intermediario = num2;
+                menor = num1;
+            } else if (num1 < num2 && num1 > num3 && num2 > num3) {
+                maior = num2;
+                intermediario = num1;
+                menor = num3;
+            } else if (num1 < num3 && num1 > num2 && num2 < num3) {
+                maior = num3;
+                intermediario = num1;
+                menor = num2;
+            } else if (num3 < num2 && num3 > num1 && num2 > num1) {
+                maior = num2;
+                intermediario = num3;
+                menor = num1;
+            } else if (num3 < num1 && num3 > num2 && num2 < num1) {
+                maior = num1;
+                intermediario = num3;
+                menor = num2;
+            }
+
+            return [menor, intermediario, maior];
+        }
+    </script>
+</body>
+</html>

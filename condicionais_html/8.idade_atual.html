@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idade Atual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Idade Atual</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="dia_atual">Informe o dia atual (DD):</label>
+            <input id="dia_atual" type="number" placeholder="Dia atual">
+        </div>
+
+        <div>
+            <label for="mes_atual">Informe o mês atual (MM):</label>
+            <input id="mes_atual" type="number" placeholder="Mês atual">
+        </div>
+
+        <div>
+            <label for="ano_atual">Informe o ano atual (AAAA):</label>
+            <input id="ano_atual" type="number" placeholder="Ano atual">
+        </div>
+
+        <div>
+            <label for="dia_nascimento">Informe o dia do seu nascimento (DD):</label>
+            <input id="dia_nascimento" type="number" placeholder="Dia de nascimento">
+        </div>
+
+        <div>
+            <label for="mes_nascimento">Informe o mês do seu nascimento (MM):</label>
+            <input id="mes_nascimento" type="number" placeholder="Mês de nascimento">
+        </div>
+
+        <div>
+            <label for="ano_nascimento">Informe o ano do seu nascimento (AAAA):</label>
+            <input id="ano_nascimento" type="number" placeholder="Ano de nascimento">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-calcular" onclick="calcularIdade()" type="button" value="Calcular">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularIdade() {
+            // Obter os valores digitados
+            const dia_atual = obter_numero('dia_atual');
+            const mes_atual = obter_numero('mes_atual');
+            const ano_atual = obter_numero('ano_atual');
+            const dia_nascimento = obter_numero('dia_nascimento');
+            const mes_nascimento = obter_numero('mes_nascimento');
+            const ano_nascimento = obter_numero('ano_nascimento');
+
+            // Calcular a idade
+            const idade = idade_atual(dia_atual, mes_atual, ano_atual, dia_nascimento, mes_nascimento, ano_nascimento);
+
+            // Exibir o resultado
+            exibirResultado(idade);
+        }
+
+        function obter_numero(elemento_id) {
+            const elemento = document.getElementById(elemento_id);
+            return Number(elemento.value);
+        }
+
+        function idade_atual(dia_atual, mes_atual, ano_atual, dia_nascimento, mes_nascimento, ano_nascimento) {
+            let idade = ano_atual - ano_nascimento;
+
+            if (mes_atual <= mes_nascimento && dia_atual < dia_nascimento) {
+                idade = idade - 1;
+            }
+
+            return idade;
+        }
+
+        function exibirResultado(idade) {
+            const elementoResultado = document.getElementById('resultado');
+            elementoResultado.textContent = `Sua idade é de ${idade} anos.`;
+        }
+    </script>
+</body>
+</html>

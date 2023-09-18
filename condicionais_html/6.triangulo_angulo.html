@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação de Triângulo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Classificação de Triângulo</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="angulo1">Informe o primeiro ângulo:</label>
+            <input id="angulo1" type="number" placeholder="Primeiro ângulo">
+        </div>
+
+        <div>
+            <label for="angulo2">Informe o segundo ângulo:</label>
+            <input id="angulo2" type="number" placeholder="Segundo ângulo">
+        </div>
+
+        <div>
+            <label for="angulo3">Informe o terceiro ângulo:</label>
+            <input id="angulo3" type="number" placeholder="Terceiro ângulo">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-verificar" onclick="verificarTriangulo()" type="button" value="Verificar">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarTriangulo() {
+            // Obter os ângulos digitados
+            const angulo1 = obter_numero('angulo1');
+            const angulo2 = obter_numero('angulo2');
+            const angulo3 = obter_numero('angulo3');
+
+            // Verificar se é um triângulo
+            if (eh_triangulo(angulo1, angulo2, angulo3)) {
+                const tipoTriangulo = classif_triangulo(angulo1, angulo2, angulo3);
+                const resultado = `SIM, é um triângulo!\n${tipoTriangulo}`;
+                exibirResultado(resultado);
+            } else {
+                exibirResultado('NÃO, os ângulos informados não formam um triângulo!');
+            }
+        }
+
+        function obter_numero(elemento_id) {
+            const elemento = document.getElementById(elemento_id);
+            return Number(elemento.value);
+        }
+
+        function eh_triangulo(ang1, ang2, ang3) {
+            if (ang1 <= 0 || ang2 <= 0 || ang3 <= 0) {
+                return false;
+            }
+
+            const soma = ang1 + ang2 + ang3;
+            return soma === 180;
+        }
+
+        function classif_triangulo(ang1, ang2, ang3) {
+            if (ang1 === 90 || ang2 === 90 || ang3 === 90) {
+                return '>>> Triângulo RETÂNGULO <<<';
+            } else if (ang1 < 90 && ang2 < 90 && ang3 < 90) {
+                return '>>> Triângulo ACUTÂNGULO <<<';
+            } else {
+                return '>>> Triângulo OBTUSÂNGULO <<<';
+            }
+        }
+
+        function exibirResultado(resultado) {
+            const elementoResultado = document.getElementById('resultado');
+            elementoResultado.textContent = resultado;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Primo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Número Primo</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="numero">Informe um número entre 0 e 100:</label>
+            <input id="numero" type="number" placeholder="Número">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-verificar" onclick="verificarPrimo()" type="button" value="Verificar">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarPrimo() {
+            // Obter o número digitado
+            const numero = obterNumero('numero');
+
+            // Verificar se é primo
+            const resultado = numeroPrimo(numero);
+
+            // Exibir o resultado
+            exibirResultado(resultado);
+        }
+
+        function obterNumero(elementoId) {
+            const elemento = document.getElementById(elementoId);
+            return Number(elemento.value);
+        }
+
+        function numeroPrimo(num) {
+            if (num > 1 && num <= 100) {
+                if (num === 2 || num === 3 || num === 5 || num === 7) {
+                    return 'É PRIMO.';
+                } else if (num % 1 === 0 && num % num === 0 && num % 2 !== 0 && num % 3 !== 0 && num % 5 !== 0 && num % 7 !== 0) {
+                    return 'É PRIMO.';
+                } else {
+                    return 'NÃO É PRIMO.';
+                }
+            } else {
+                return 'não é válido para verificação! Informe um número entre 2 e 100.';
+            }
+        }
+
+        function exibirResultado(resultado) {
+            const elementoResultado = document.getElementById('resultado');
+            elementoResultado.textContent = resultado;
+        }
+    </script>
+</body>
+</html>

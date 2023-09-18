@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Senha</title>
+</head>
+<body>
+    <h1>Validar Senha</h1>
+    <form id="formulario" onsubmit="validarSenha(); return false;">
+        <div>
+            <label for="senha">Informe uma senha de 4 dígitos:</label>
+            <input id="senha" type="password" pattern="\d{4}" title="Digite uma senha de 4 dígitos." required>
+        </div>
+
+        <div>
+            <button type="submit">Validar Senha</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function validarSenha() {
+            const senha = document.getElementById('senha').value;
+
+            if (senha === '1234') {
+                document.getElementById('resultado').textContent = 'Acesso Permitido';
+            } else {
+                document.getElementById('resultado').textContent = 'Acesso Negado';
+            }
+        }
+    </script>
+</body>
+</html>

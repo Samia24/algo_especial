@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operações com Variáveis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Operações com Variáveis</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="valor1">Digite a variável 1:</label>
+            <input id="valor1" type="number" placeholder="Variável 1">
+        </div>
+
+        <div>
+            <label for="valor2">Digite a variável 2:</label>
+            <input id="valor2" type="number" placeholder="Variável 2">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-calcular" onclick="calcularResultado()" type="button" value="Calcular Resultado">
+            <input type="reset" value="Limpar">
+        </div>
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function obter_numero_int(descricao) {
+            const numero = parseInt(prompt(descricao))
+            return numero
+        }
+
+        function calcularResultado() {
+            const valor1 = obter_numero_int('Digite a variável 1: ')
+            const valor2 = obter_numero_int('Digite a variável 2: ')
+
+            const resto_divisao = valor1 % valor2
+            let resultado = `\n-> O resto da divisão é ${resto_divisao}.\n`
+
+            if (resto_divisao === 1) {
+                const soma = (valor1 + valor2) + resto_divisao
+                resultado += `Quando o resto da divisão é 1. O resultado esperado é ${soma}.`
+            } else if (resto_divisao === 2) {
+                if (valor1 % 2 === 0) {
+                    resultado += `O número ${valor1} é par.\n`
+                } else {
+                    resultado += `O número ${valor1} é ímpar.\n`
+                }
+
+                if (valor2 % 2 === 0) {
+                    resultado += `O número ${valor2} é par.`
+                } else {
+                    resultado += `O número ${valor2} é ímpar.`
+                }
+            } else if (resto_divisao === 3) {
+                const multiplicacao = (valor1 + valor2) * valor1
+                resultado += `Quando o resto da divisão é 3. O resultado esperado é ${multiplicacao}.`
+            } else if (resto_divisao === 4 && valor2 !== 0) {
+                const divisao = (valor1 + valor2) / valor2
+                resultado += `Quando o resto da divisão é 4. O resultado esperado é ${divisao}.`
+            } else {
+                const quadrado1 = valor1 ** 2
+                const quadrado2 = valor2 ** 2
+                resultado += `Quando o resto da divisão é diferente de 1, 2, 3 ou 4. O resultado esperado é o quadrado dos dois números:\nO quadrado de ${valor1} é ${quadrado1}.\nE o quadrado de ${valor2} é ${quadrado2}.`
+            }
+
+            document.getElementById('resultado').textContent = resultado
+        }
+    </script>
+</body>
+</html>

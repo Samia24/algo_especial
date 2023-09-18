@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mais Recente</title>
+</head>
+<body>
+    <h1>Data Mais Recente</h1>
+    <form id="formulario" onsubmit="calcularDataRecente(); return false;">
+        <div>
+            <label for="dia1">Informe o dia 1 (DD):</label>
+            <input id="dia1" type="number" min="1" max="31" required>
+        </div>
+
+        <div>
+            <label for="mes1">Informe o mês 1 (MM):</label>
+            <input id="mes1" type="number" min="1" max="12" required>
+        </div>
+
+        <div>
+            <label for="ano1">Informe o ano 1 (AAAA):</label>
+            <input id="ano1" type="number" min="1" required>
+        </div>
+
+        <div>
+            <label for="dia2">Informe o dia 2 (DD):</label>
+            <input id="dia2" type="number" min="1" max="31" required>
+        </div>
+
+        <div>
+            <label for="mes2">Informe o mês 2 (MM):</label>
+            <input id="mes2" type="number" min="1" max="12" required>
+        </div>
+
+        <div>
+            <label for="ano2">Informe o ano 2 (AAAA):</label>
+            <input id="ano2" type="number" min="1" required>
+        </div>
+
+        <div>
+            <button type="submit">Calcular Data Mais Recente</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularDataRecente() {
+            const dia1 = parseInt(document.getElementById('dia1').value);
+            const mes1 = parseInt(document.getElementById('mes1').value);
+            const ano1 = parseInt(document.getElementById('ano1').value);
+            const dia2 = parseInt(document.getElementById('dia2').value);
+            const mes2 = parseInt(document.getElementById('mes2').value);
+            const ano2 = parseInt(document.getElementById('ano2').value);
+
+            const [diaRec, mesRec, anoRec] = data_recente(dia1, mes1, ano1, dia2, mes2, ano2);
+
+            const resultado = `A data mais recente é ${diaRec}/${mesRec}/${anoRec}.`;
+            document.getElementById('resultado').textContent = resultado;
+        }
+
+        function data_recente(dia1, mes1, ano1, dia2, mes2, ano2) {
+            if (ano1 <= ano2) {
+                if (mes1 <= mes2) {
+                    if (dia1 < dia2) {
+                        return [dia2, mes2, ano2];
+                    } else {
+                        return [dia1, mes1, ano1];
+                    }
+                } else {
+                    return [dia1, mes1, ano1];
+                }
+            } else {
+                return [dia1, mes1, ano1];
+            }
+        }
+    </script>
+</body>
+</html>

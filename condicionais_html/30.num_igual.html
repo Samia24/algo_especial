@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Número Original</title>
+</head>
+<body>
+    <h1>Verificar Número Original</h1>
+    <form id="formulario">
+        <div>
+            <label for="numero">Informe um número de 4 dígitos:</label>
+            <input id="numero" type="text" maxlength="4" required>
+        </div>
+        <div>
+            <button type="button" onclick="verificarNumeroOriginal()">Verificar</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarNumeroOriginal() {
+            const numero = parseInt(document.getElementById('numero').value, 10);
+
+            if (numero >= 1000 && numero <= 9999) {
+                const resultado = num_original(numero);
+                document.getElementById('resultado').textContent = `\nO número ${numero} quando separado em: 
+                Milhar e centena, dezena e unidade, ao somar-se e elevar essa soma ao quadrado,
+                \nO resultado é >> ${resultado}`;
+            } else {
+                alert('Por favor, insira um número de 4 dígitos.');
+            }
+        }
+
+        function num_original(num) {
+            const num_ini = Math.floor(num / 100);
+            const num_fin = num % 100;
+            const soma = num_ini + num_fin;
+            const quadrado = soma ** 2;
+
+            if (num === quadrado) {
+                return `${quadrado}, que É o mesmo VALOR INICIAL`;
+            } else {
+                return `${quadrado}, que NÃO é o mesmo VALOR INICIAL`;
+            }
+        }
+    </script>
+</body>
+</html>

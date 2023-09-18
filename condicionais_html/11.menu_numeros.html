@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu de Números</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Menu de Números</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="numero1">Informe o primeiro número:</label>
+            <input id="numero1" type="number" placeholder="Número 1">
+        </div>
+        <div>
+            <label for="numero2">Informe o segundo número:</label>
+            <input id="numero2" type="number" placeholder="Número 2">
+        </div>
+        <div>
+            <label for="numero3">Informe o terceiro número:</label>
+            <input id="numero3" type="number" placeholder="Número 3">
+        </div>
+
+        <div id="menu">
+            <h2>MENU</h2>
+            <label for="opcao">(1) Mostrar o primeiro número digitado</label>
+            <label for="opcao">(2) Mostrar o segundo número digitado</label>
+            <label for="opcao">(3) Mostrar o terceiro número digitado</label>
+            <label for="opcao">Escolha uma opção do menu:</label>
+            <input id="opcao" type="number" placeholder="Opção">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-executar" onclick="executarOpcao()" type="button" value="Executar Opção">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function obter_numero_int(descricao) {
+            const numero = Number(prompt(descricao))
+            return numero
+        }
+
+        function menu_numeros(opcao, num1, num2, num3) {
+            if (opcao === 1) {
+                return num1
+            } else if (opcao === 2) {
+                return num2
+            } else if (opcao === 3) {
+                return num3
+            }
+        }
+
+        function main() {
+            // Entrada
+            const numero1 = obter_numero_int('Informe o primeiro número: ')
+            const numero2 = obter_numero_int('Informe o segundo número: ')
+            const numero3 = obter_numero_int('Informe o terceiro número: ')
+            console.log('\n>>>>> MENU <<<<<')
+            console.log('(1) Mostrar o primeiro número digitado')
+            console.log('(2) Mostrar o segundo número digitado')
+            console.log('(3) Mostrar o terceiro número digitado')
+            const opcao = obter_numero_int('\nEscolha uma opção do menu: ')
+
+            // Processamento
+            const resultado = menu_numeros(opcao, numero1, numero2, numero3)
+
+            // Saída
+            if (opcao < 1 || opcao > 3) {
+                console.log('\nOPÇÃO INVÁLIDA!')
+            } else {
+                console.log(`\n>> A opção escolhida retorna o número: ${resultado}`)
+            }
+        }
+
+        main()
+    </script>
+</body>
+</html>

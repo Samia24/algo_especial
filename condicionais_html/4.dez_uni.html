@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Dezena e Unidade</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Verificar Dezena e Unidade</h1>
+    </header>
+    <form id="formulario" action="#">
+        <div>
+            <label for="numero">Informe um número com dois dígitos:</label>
+            <input id="numero" type="number" placeholder="Número com dois dígitos">
+        </div>
+
+        <div id="botoes">
+            <input id="btn-verificar" onclick="verificarDezenaUnidade()" type="button" value="Verificar">
+            <input type="reset" value="Limpar">
+        </div>
+
+    </form>
+
+    <h2>**** RESULTADO ****</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarDezenaUnidade() {
+            // Obter o número digitado
+            const numero = obter_numero('numero');
+
+            // Verificar dezena e unidade
+            const resultado = dez_uni(numero);
+
+            // Exibir o resultado
+            const elementoResultado = document.getElementById('resultado');
+            elementoResultado.textContent = `O algarismo da dezena é ${resultado} ao da unidade.`;
+        }
+
+        function obter_numero(elemento_id) {
+            const elemento = document.getElementById(elemento_id);
+            return Number(elemento.value);
+        }
+
+        function dez_uni(num) {
+            const dezena = Math.floor(num / 10);
+            const unidade = num % 10;
+
+            if (dezena === unidade) {
+                return 'igual';
+            } else {
+                return 'diferente';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Quadrado Perfeito</title>
+</head>
+<body>
+    <h1>Verificar Quadrado Perfeito</h1>
+    <form id="formulario" onsubmit="verificarQuadradoPerfeito(); return false;">
+        <div>
+            <label for="numero">Informe um número de 4 dígitos:</label>
+            <input id="numero" type="number" required>
+        </div>
+        <div>
+            <button type="submit">Verificar</button>
+        </div>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarQuadradoPerfeito() {
+            const numero = parseInt(document.getElementById('numero').value);
+
+            if (isNaN(numero) || numero < 1000 || numero > 9999) {
+                alert('Por favor, insira um número de 4 dígitos.');
+            } else {
+                const resultado = ehQuadradoPerfeito(numero);
+                document.getElementById('resultado').textContent = `O número ${numero} ${resultado}.`;
+            }
+        }
+
+        function ehQuadradoPerfeito(num) {
+            const raizQuadrada = Math.sqrt(num);
+            const inteiroRaiz = Math.floor(raizQuadrada);
+
+            if (inteiroRaiz * inteiroRaiz === num) {
+                return 'é um QUADRADO PERFEITO';
+            } else {
+                return 'NÃO é um QUADRADO PERFEITO';
+            }
+        }
+    </script>
+</body>
+</html>
